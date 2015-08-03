@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D0FAC9B1B6F2C5500197DCB /* MusicQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0FAC9A1B6F2C5500197DCB /* MusicQuery.swift */; };
 		6D949BEA1B661EB100628039 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D949BE91B661EB100628039 /* AppDelegate.swift */; };
 		6D949BED1B661EB100628039 /* MusicPlayer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6D949BEB1B661EB100628039 /* MusicPlayer.xcdatamodeld */; };
 		6D949BEF1B661EB100628039 /* PlayListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D949BEE1B661EB100628039 /* PlayListViewController.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6D0FAC9A1B6F2C5500197DCB /* MusicQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicQuery.swift; sourceTree = "<group>"; };
 		6D949BE41B661EB100628039 /* MusicPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D949BE81B661EB100628039 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6D949BE91B661EB100628039 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 			children = (
 				6D949BE91B661EB100628039 /* AppDelegate.swift */,
 				6D949BEE1B661EB100628039 /* PlayListViewController.swift */,
+				6D0FAC9A1B6F2C5500197DCB /* MusicQuery.swift */,
 				6D949BF01B661EB100628039 /* Main.storyboard */,
 				6D949BF31B661EB100628039 /* Images.xcassets */,
 				6D949BF51B661EB100628039 /* LaunchScreen.xib */,
@@ -217,6 +220,7 @@
 			files = (
 				6D949BEF1B661EB100628039 /* PlayListViewController.swift in Sources */,
 				6D949BED1B661EB100628039 /* MusicPlayer.xcdatamodeld in Sources */,
+				6D0FAC9B1B6F2C5500197DCB /* MusicQuery.swift in Sources */,
 				6D949BEA1B661EB100628039 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
