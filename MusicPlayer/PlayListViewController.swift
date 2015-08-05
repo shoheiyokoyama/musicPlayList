@@ -8,12 +8,12 @@
 
 import UIKit
 import AVFoundation
+import MediaPlayer
 
 class PlayListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    private var tableView: UITableView!
-    private var albums: [AlbumInfo] = []
-    private var testItems = ["1", "2", "3"]
+    var tableView: UITableView!
+    var albums: [AlbumInfo] = []
     var songQuery: MusicQuery = MusicQuery()
     var audio: AVAudioPlayer! = nil
     
@@ -28,6 +28,9 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.delegate = self;
         tableView.dataSource = self;
         self.view.addSubview(tableView)
+        
+        let stopButton: UIBarButtonItem = UIBarButtonItem( title: "Stop", style:  UIBarButtonItemStyle.Plain, target: self, action: "stop" )
+        self.navigationItem.rightBarButtonItem = stopButton
         
         albums = songQuery.get()
     }
@@ -45,7 +48,15 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         println("Num: \(indexPath.row)")
-        println("Value: \(testItems[indexPath.row])")
+        let musicId: NSNumber = albums[indexPath.section].musics[indexPath.row].musicId
+        let item: MPMediaItem = MusicQuery.getItem(musicId)
+
+        let url: NSURL = item.valueForProperty(MPMediaItemPropertyAssetURL) as! NSURL
+        
+        audio = AVAudioPlayer(contentsOfURL: url, error: nil)
+        audio.play()
+        
+        self.title = albums[indexPath.section].musics[indexPath.row].title
     }
     
     func tableView( tableView: UITableView, cellForRowAtIndexPath indexPath:NSIndexPath) -> UITableViewCell {
@@ -65,6 +76,13 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView( tableView: UITableView, titleForHeaderInSection section: Int ) -> String? {
         
         return albums[section].albumTitle as String
+    }
+    
+    func stop() {
+        
+        if audio != nil {
+            audio.stop()
+        }
     }
 }
 

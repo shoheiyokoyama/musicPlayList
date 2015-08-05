@@ -7,18 +7,17 @@
 //
 
 import UIKit
-//import Foundation
 import MediaPlayer
 
 struct MusicInfo {
-    var albumTitle: NSString
-    var artist: NSString
-    var title: NSString
+    var albumTitle: String
+    var artist: String
+    var title: String
     var musicId: NSNumber
 }
 
 struct AlbumInfo {
-    var albumTitle: NSString
+    var albumTitle: String
     var musics: [MusicInfo]
 }
 
@@ -29,43 +28,39 @@ class MusicQuery {
         var albums: [AlbumInfo] = []
         
         var albumsQuery: MPMediaQuery = MPMediaQuery.albumsQuery()
-        var albmsItems: NSArray = albumsQuery.collections
+        var albumItems: [MPMediaItemCollection] = albumsQuery.collections as! [MPMediaItemCollection]
         var album: MPMediaItemCollection
         
-        for album in albmsItems {
+        for album in albumItems {
             var albumItems: [MPMediaItem] = album.items as! [MPMediaItem]
             var music: MPMediaItem = MPMediaItem()
             var musics: [MusicInfo] = []
             var albumTitle: NSString = ""
             
-            for song in albumItems {
-                
-                albumTitle = music.valueForProperty( MPMediaItemPropertyAlbumTitle ) as! NSString
-                
+            for music in albumItems {
+                albumTitle = music.valueForProperty( MPMediaItemPropertyAlbumTitle ) as! String
+
                 var musicInfo: MusicInfo = MusicInfo(
-                    albumTitle: music.valueForProperty( MPMediaItemPropertyAlbumTitle ) as! NSString,
-                    artist: music.valueForProperty( MPMediaItemPropertyArtist ) as! NSString,
-                    title: music.valueForProperty( MPMediaItemPropertyTitle ) as! NSString,
+                    albumTitle: music.valueForProperty( MPMediaItemPropertyAlbumTitle ) as! String,
+                    artist: music.valueForProperty( MPMediaItemPropertyArtist ) as! String,
+                    title: music.valueForProperty( MPMediaItemPropertyTitle ) as! String,
                     musicId: music.valueForProperty( MPMediaItemPropertyPersistentID ) as! NSNumber
                 )
-                
                 musics.append(musicInfo)
             }
             
             var albumInfo: AlbumInfo = AlbumInfo(
-                albumTitle: albumTitle,
+                albumTitle: albumTitle as String,
                 musics: musics
             )
-            
             albums.append(albumInfo)
         }
         
         return albums
     }
     
-    func getItem( songId: NSNumber ) -> MPMediaItem {
-        
-        var property: MPMediaPropertyPredicate = MPMediaPropertyPredicate( value: songId, forProperty: MPMediaItemPropertyPersistentID )
+    func getItem(songId: NSNumber) -> MPMediaItem {
+        var property: MPMediaPropertyPredicate = MPMediaPropertyPredicate(value: songId, forProperty: MPMediaItemPropertyPersistentID)
         
         var query: MPMediaQuery = MPMediaQuery()
         query.addFilterPredicate(property)
